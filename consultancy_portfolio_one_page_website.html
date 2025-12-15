@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI & Telecom Innovation Consulting | Tarek Halawa</title>
+  <meta name="description" content="Boutique consultancy helping organizations turn data, AI, and telecom expertise into measurable business outcomes." />
+  <style>
+    :root{
+      --bg:#0b0f17;
+      --card:#111827;
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+      --line:#243041;
+      --accent:#7c3aed;
+      --accent2:#22c55e;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background: radial-gradient(1200px 700px at 10% 0%, rgba(124,58,237,.25), transparent 60%),
+                  radial-gradient(1000px 600px at 90% 10%, rgba(34,197,94,.14), transparent 55%),
+                  var(--bg);
+      line-height:1.45;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+
+    /* Top nav */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,15,23,.65);
+      border-bottom:1px solid rgba(36,48,65,.55);
+    }
+    .nav .inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+    .logo{
+      width:36px; height:36px; border-radius:12px;
+      background: linear-gradient(135deg, var(--accent), rgba(124,58,237,.15));
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.45), transparent 45%);
+      transform: rotate(25deg);
+    }
+    .navlinks{display:flex; gap:16px; flex-wrap:wrap; justify-content:flex-end}
+    .navlinks a{
+      font-size:14px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
+    }
+    .navlinks a:hover{color:var(--text); border-color:rgba(36,48,65,.8); background:rgba(17,24,39,.35)}
+
+    /* Hero */
+    .hero{padding:56px 0 30px}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    .h1{
+      font-size: clamp(30px, 4vw, 54px);
+      line-height:1.05;
+      margin:0 0 14px;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      font-size: clamp(16px, 1.45vw, 18px);
+      color:var(--muted);
+      margin:0 0 22px;
+      max-width: 62ch;
+    }
+    .pillRow{display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 22px}
+    .pill{
+      font-size:13px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(36,48,65,.85);
+      background: rgba(17,24,39,.35);
+      color:var(--text);
+    }
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:11px 14px;
+      border-radius: 12px;
+      border:1px solid rgba(36,48,65,.9);
+      background: rgba(17,24,39,.55);
+      color:var(--text);
+      font-weight:600;
+      box-shadow: none;
+      transition: transform .08s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(17,24,39,.78); border-color: rgba(124,58,237,.55)}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(124,58,237,.92), rgba(124,58,237,.55));
+      border-color: rgba(124,58,237,.8);
+      box-shadow: 0 12px 28px rgba(124,58,237,.22);
+    }
+    .btn.primary:hover{border-color: rgba(167,139,250,.95)}
+    .mini{font-size:13px; color:var(--muted)}
+
+    /* Cards + sections */
+    section{padding:34px 0}
+    .sectionTitle{
+      font-size: 18px;
+      letter-spacing:.3px;
+      margin:0 0 14px;
+      color: #dbeafe;
+    }
+    .sectionLead{margin:0 0 20px; color:var(--muted); max-width: 80ch}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:16px;
+    }
+    .card{
+      background: rgba(17,24,39,.62);
+      border:1px solid rgba(36,48,65,.75);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+    }
+    .card h3{margin:0 0 8px; font-size:16px}
+    .card p{margin:0; color:var(--muted); font-size:14px}
+    .list{margin:12px 0 0; padding:0; list-style:none; display:grid; gap:10px}
+    .li{
+      display:flex; gap:10px; align-items:flex-start;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: rgba(124,58,237,.9);
+      margin-top:6px;
+      flex:0 0 auto;
+      box-shadow: 0 0 0 4px rgba(124,58,237,.18);
+    }
+
+    /* Right panel (founder card) */
+    .founder{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      height:100%;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px;
+      color: #e9d5ff;
+      border:1px solid rgba(124,58,237,.6);
+      background: rgba(124,58,237,.12);
+      padding:7px 10px;
+      border-radius:999px;
+      width:fit-content;
+    }
+    .avatar{
+      width:54px; height:54px; border-radius: 18px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 55%),
+                  linear-gradient(135deg, rgba(34,197,94,.85), rgba(124,58,237,.75));
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow);
+    }
+    .kpis{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:6px}
+    .kpi{
+      padding:12px;
+      border-radius: 14px;
+      border:1px solid rgba(36,48,65,.75);
+      background: rgba(11,15,23,.35);
+    }
+    .kpi b{display:block; font-size:18px; color:var(--text)}
+    .kpi span{display:block; font-size:12px; color:var(--muted)}
+
+    /* Metrics strip */
+    .metricStrip{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:12px;
+      margin-top: 16px;
+    }
+    .metric{
+      padding:14px;
+      border-radius: 16px;
+      background: rgba(17,24,39,.55);
+      border:1px solid rgba(36,48,65,.7);
+    }
+    .metric b{display:block; font-size:18px}
+    .metric span{display:block; margin-top:2px; font-size:12px; color:var(--muted)}
+
+    /* Footer */
+    footer{padding:28px 0 44px; border-top:1px solid rgba(36,48,65,.65); color:var(--muted)}
+    .footerGrid{display:grid; grid-template-columns: 1.3fr .7fr; gap:18px; align-items:start}
+    .small{font-size:12px; color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .heroGrid{grid-template-columns:1fr;}
+      .metricStrip{grid-template-columns:1fr 1fr}
+      .footerGrid{grid-template-columns:1fr}
+    }
+    @media (max-width: 560px){
+      .navlinks{display:none}
+      .metricStrip{grid-template-columns:1fr}
+      .kpis{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="wrap">
+      <div class="inner">
+        <div class="brand" aria-label="Brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:14px; font-weight:800">Halawa Consulting</div>
+            <div class="mini">AI • Analytics • Telecom</div>
+          </div>
+        </div>
+        <div class="navlinks" aria-label="Navigation">
+          <a href="#services">Services</a>
+          <a href="#impact">Impact</a>
+          <a href="#approach">Approach</a>
+          <a href="#about">Founder</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="heroGrid">
+        <div class="card">
+          <div class="badge">Insight + Technology → Business Impact</div>
+          <h1 class="h1">Turn complex data & networks into measurable outcomes.</h1>
+          <p class="sub">
+            We are a boutique consultancy helping teams design and deliver <b>AI-driven analytics</b>,
+            <b>customer experience intelligence</b>, and <b>telecom performance</b> solutions—built for real-world execution.
+          </p>
+
+          <div class="pillRow">
+            <div class="pill">AI Agents & GenAI (LLMs, RAG, LangGraph)</div>
+            <div class="pill">Telecom E2E (RAN • Core • IMS • 5G SA/NSA)</div>
+            <div class="pill">Python • SQL • PySpark • Power BI • Tableau</div>
+            <div class="pill">AWS • Databricks • WatsonX</div>
+          </div>
+
+          <div class="ctaRow">
+            <a class="btn primary" href="#contact">Book a discovery call</a>
+            <a class="btn" href="#services">Explore services</a>
+          </div>
+
+          <div class="metricStrip" aria-label="Proof points">
+            <div class="metric"><b>35%</b><span>Churn reduction (treated segment)</span></div>
+            <div class="metric"><b>60%</b><span>Faster MMS delivery</span></div>
+            <div class="metric"><b>300%</b><span>Improved CX KPI visibility</span></div>
+            <div class="metric"><b>Multi‑$M</b><span>Data monetization initiatives</span></div>
+          </div>
+        </div>
+
+        <!-- FOUNDER SNAPSHOT -->
+        <aside class="card founder" id="about">
+          <div style="display:flex; gap:12px; align-items:center">
+            <div class="avatar" aria-hidden="true"></div>
+            <div>
+              <div style="font-weight:800; font-size:16px">Tarek Halawa</div>
+              <div class="mini">AI & Telecom Innovation Leader</div>
+              <div class="mini">Centennial, CO • Ashburn, VA</div>
+            </div>
+          </div>
+
+          <p style="margin:0; color:var(--muted); font-size:14px">
+            15+ years driving AI, analytics, and telecom innovation across global markets.
+            Known for building scalable, customer‑centric solutions and partnering with executives to translate technical insight into business outcomes.
+          </p>
+
+          <div class="kpis">
+            <div class="kpi"><b>15+ yrs</b><span>Telecom & analytics delivery</span></div>
+            <div class="kpi"><b>200+</b><span>Engineers trained in AI</span></div>
+            <div class="kpi"><b>10+</b><span>Countries impacted</span></div>
+            <div class="kpi"><b>4×</b><span>Nokia innovation awards</span></div>
+          </div>
+
+          <a class="btn" href="#impact" style="margin-top:auto">View selected impact</a>
+          <div class="small">*Metrics based on prior engagements and internal programs.</div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <h2 class="sectionTitle">Services</h2>
+      <p class="sectionLead">Strategy-led, execution-focused engagements designed to deliver outcomes—not just artifacts.</p>
+
+      <div class="grid">
+        <div class="card" style="grid-column: span 6;">
+          <h3>AI & Advanced Analytics</h3>
+          <p>Design and deploy AI solutions that solve real business problems—end to end.</p>
+          <ul class="list">
+            <li class="li"><span class="dot"></span><span>AI Agents & GenAI (LLMs, RAG, LangGraph)</span></li>
+            <li class="li"><span class="dot"></span><span>Predictive modeling (churn, risk, anomaly detection)</span></li>
+            <li class="li"><span class="dot"></span><span>ETL & scalable pipelines (Python, SQL, PySpark)</span></li>
+            <li class="li"><span class="dot"></span><span>Cloud-native delivery (AWS, Databricks)</span></li>
+          </ul>
+        </div>
+
+        <div class="card" style="grid-column: span 6;">
+          <h3>Customer Experience Intelligence</h3>
+          <p>Move beyond aggregated KPIs to what customers actually experience—at scale.</p>
+          <ul class="list">
+            <li class="li"><span class="dot"></span><span>Customer-centric scoring & profiling models</span></li>
+            <li class="li"><span class="dot"></span><span>KPI frameworks and decisioning tools</span></li>
+            <li class="li"><span class="dot"></span><span>Executive dashboards (Power BI, Tableau)</span></li>
+            <li class="li"><span class="dot"></span><span>Geo/indoor analytics and hotspot targeting</span></li>
+          </ul>
+        </div>
+
+        <div class="card" style="grid-column: span 6;">
+          <h3>Telecom & Digital Infrastructure Advisory</h3>
+          <p>Deep expertise across RAN, Core, IMS, and 5G SA/NSA for performance and readiness.</p>
+          <ul class="list">
+            <li class="li"><span class="dot"></span><span>Network performance audits & root-cause frameworks</span></li>
+            <li class="li"><span class="dot"></span><span>5G optimization and feature readiness support</span></li>
+            <li class="li"><span class="dot"></span><span>E2E observability & fast KPI windows (e.g., 15-min)</span></li>
+          </ul>
+        </div>
+
+        <div class="card" style="grid-column: span 6;">
+          <h3>Data Monetization & Enablement</h3>
+          <p>Identify, validate, and operationalize data products with governance in mind.</p>
+          <ul class="list">
+            <li class="li"><span class="dot"></span><span>Use-case discovery & business case creation</span></li>
+            <li class="li"><span class="dot"></span><span>Mobility insights, CX insights, geospatial analytics</span></li>
+            <li class="li"><span class="dot"></span><span>Internal + partner-ready data product design</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT -->
+  <section id="impact">
+    <div class="wrap">
+      <h2 class="sectionTitle">Selected impact</h2>
+      <p class="sectionLead">Examples of measurable outcomes delivered through AI, analytics, and cross-functional execution.</p>
+
+      <div class="grid">
+        <div class="card" style="grid-column: span 4;">
+          <h3>Churn reduction</h3>
+          <p>Custom AI-driven churn propensity model enabling proactive service-quality interventions.</p>
+          <ul class="list">
+            <li class="li"><span class="dot"></span><span><b style="color:var(--text)">35%</b> reduction in churn for treated customers</span></li>
+          </ul>
+        </div>
+        <div class="card" style="grid-column: span 4;">
+          <h3>E2E performance uplift</h3>
+          <p>Coordinated RAN/Core/Cloud optimization to improve real customer outcomes.</p>
+          <ul class="list">
+            <li class="li"><span class="dot"></span><span><b style="color:var(--text)">60%</b> faster MMS delivery</span></li>
+            <li class="li"><span class="dot"></span><span><b style="color:var(--text)">25%</b> uplift in browsing success rate</span></li>
+            <li class="li"><span class="dot"></span><span><b style="color:var(--text)">40%</b> less out-of-service time</span></li>
+          </ul>
+        </div>
+        <div class="card" style="grid-column: span 4;">
+          <h3>CX KPI transformation</h3>
+          <p>New customer-centric BI frameworks to accelerate decision-making.</p>
+          <ul class="list">
+            <li class="li"><span class="dot"></span><span><b style="color:var(--text)">300%</b> improvement in CX KPI visibility</span></li>
+            <li class="li"><span class="dot"></span><span><b style="color:var(--text)">50%</b> reduction in complaint resolution time</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section id="approach">
+    <div class="wrap">
+      <h2 class="sectionTitle">How we work</h2>
+      <p class="sectionLead">A pragmatic delivery playbook that blends executive alignment with hands-on build.</p>
+
+      <div class="grid">
+        <div class="card" style="grid-column: span 3;">
+          <h3>1) Define</h3>
+          <p>Clarify the business question, success metrics, and constraints.</p>
+        </div>
+        <div class="card" style="grid-column: span 3;">
+          <h3>2) Map</h3>
+          <p>Understand data reality, systems, and operational workflows.</p>
+        </div>
+        <div class="card" style="grid-column: span 3;">
+          <h3>3) Build</h3>
+          <p>Deliver scalable solutions—pipelines, models, dashboards, automation.</p>
+        </div>
+        <div class="card" style="grid-column: span 3;">
+          <h3>4) Enable</h3>
+          <p>Transfer knowledge, document, and operationalize for adoption.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="grid">
+        <div class="card" style="grid-column: span 7;">
+          <h2 class="sectionTitle" style="margin-bottom:8px">Let’s talk</h2>
+          <p class="sectionLead" style="margin-bottom:14px">
+            If you’re looking to apply AI beyond experimentation, improve customer experience measurably, or monetize data responsibly—we can help.
+          </p>
+
+          <div class="ctaRow">
+            <!-- Replace with your real links -->
+            <a class="btn primary" href="mailto:tarek.nasr@outlook.com?subject=Consulting%20Inquiry">Email</a>
+            <a class="btn" href="#" onclick="copyEmail(); return false;">Copy email</a>
+            <a class="btn" href="#" title="Add your LinkedIn URL">LinkedIn</a>
+          </div>
+
+          <div class="small" style="margin-top:14px">
+            Preferred: include a short note about your goals, timeline, and any constraints (data, systems, compliance).
+          </div>
+        </div>
+
+        <div class="card" style="grid-column: span 5;">
+          <h3>Engagement models</h3>
+          <ul class="list">
+            <li class="li"><span class="dot"></span><span>Advisory & strategy</span></li>
+            <li class="li"><span class="dot"></span><span>Project-based delivery</span></li>
+            <li class="li"><span class="dot"></span><span>Fractional leadership (AI / Analytics / CX)</span></li>
+            <li class="li"><span class="dot"></span><span>Workshops & executive enablement</span></li>
+          </ul>
+          <div class="small" style="margin-top:12px">Based in Colorado/Virginia • Available remote or hybrid.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footerGrid">
+        <div>
+          <div style="font-weight:800; color:var(--text)">Halawa Consulting</div>
+          <div class="small" style="margin-top:6px">AI • Analytics • Telecom • Customer Experience</div>
+          <div class="small" style="margin-top:10px">© <span id="yr"></span> Halawa Consulting. All rights reserved.</div>
+        </div>
+        <div>
+          <div class="small" style="margin-bottom:6px">Quick links</div>
+          <div class="navlinks" style="justify-content:flex-start; display:flex">
+            <a href="#services">Services</a>
+            <a href="#impact">Impact</a>
+            <a href="#approach">Approach</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    function copyEmail(){
+      const email = 'tarek.nasr@outlook.com';
+      navigator.clipboard.writeText(email).then(() => {
+        const msg = document.createElement('div');
+        msg.textContent = 'Email copied to clipboard.';
+        msg.style.position='fixed';
+        msg.style.left='50%';
+        msg.style.bottom='20px';
+        msg.style.transform='translateX(-50%)';
+        msg.style.padding='10px 12px';
+        msg.style.borderRadius='12px';
+        msg.style.background='rgba(17,24,39,.9)';
+        msg.style.border='1px solid rgba(36,48,65,.9)';
+        msg.style.color='#e5e7eb';
+        msg.style.boxShadow='0 10px 30px rgba(0,0,0,.35)';
+        msg.style.zIndex='9999';
+        document.body.appendChild(msg);
+        setTimeout(()=> msg.remove(), 1600);
+      });
+    }
+  </script>
+</body>
+</html>
